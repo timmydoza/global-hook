@@ -1,0 +1,45 @@
+{
+  "name": "global-hook",
+  "version": "0.0.1",
+  "description": "A global version of the useState React hook.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timmydoza/use-global.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "state",
+    "usestate",
+    "global"
+  ],
+  "author": "timmydoza <timmydoza@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timmydoza/use-global/issues"
+  },
+  "homepage": "https://github.com/timmydoza/use-global#readme",
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "jest": "^24.9.0",
+    "react": "^16.12.0",
+    "react-test-renderer": "^16.12.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3",
+    "@types/jest": "^24.0.23"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "ts-jest"
+    }
+  }
+}
