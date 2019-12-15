@@ -4,9 +4,10 @@
         "noImplicitAny": true,
         "sourceMap": false,
         "moduleResolution": "node",
-        "target": "ES6",
+        "target": "ES5",
         "outDir": "dist",
-        "declaration": true
+        "declaration": true,
+        "lib": ["ES6"]
     },
     "include": [
         "src/**/*"

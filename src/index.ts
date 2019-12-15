@@ -2,29 +2,33 @@ import { useState, useEffect, useCallback, Dispatch, SetStateAction } from 'reac
 
 function createUseGlobalState() {
   const listeners: { [namespace: string]: Dispatch<SetStateAction<any>>[] } = {};
+  let isTouched: { [namespace: string]: boolean } = {};
+  let stateObj: { [namespace: string]: any } = {};
 
   return function useGlobalState<T>(initialState: T | (() => T), namespace: string) {
     if (typeof namespace !== 'string' || namespace === '') {
       throw new Error('A non-empty string must be passed to useGlobalState as the second argument.');
     }
 
-    const [state, setState] = useState<T>(initialState);
+    if (!isTouched[namespace]) {
+      stateObj[namespace] = initialState;
+      isTouched[namespace] = true;
+    }
+
+    const [state, setState] = useState<T>(stateObj[namespace]);
+
+    const listenerArr = (listeners[namespace] = listeners[namespace] || []);
 
     useEffect(() => {
-      const listenerArr = (listeners[namespace] = listeners[namespace] || []);
       listenerArr.push(setState);
       return () => {
         listenerArr.splice(listenerArr.indexOf(setState), 1);
       };
-    }, [namespace, setState]);
+    }, []);
 
-    const setGlobalState = useCallback(
-      action => {
-        const nextState = typeof action === 'function' ? action(state) : action;
-        listeners[namespace].forEach(listener => listener(nextState));
-      },
-      [state, namespace]
-    );
+    const setGlobalState = useCallback(action => {
+      listenerArr.forEach(listener => listener(action));
+    }, []);
 
     return [state, setGlobalState as typeof setState] as const;
   };
