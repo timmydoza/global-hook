@@ -8,4 +8,4 @@ node_js:
   - "7"
   - "6"
 script:
-  - npm test && npm build
+  - npm test && npm run build
