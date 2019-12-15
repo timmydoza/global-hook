@@ -1,4 +1,4 @@
-# use-global
+# global-hook
 [![Build Status](https://travis-ci.org/timmydoza/global-hook.svg?branch=master)](https://travis-ci.org/timmydoza/global-hook)
 
 A global version of React's `useState` hook.
