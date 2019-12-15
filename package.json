@@ -1,6 +1,6 @@
 {
   "name": "global-hook",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A global version of the useState React hook with a simple API.",
   "main": "dist/index.js",
   "scripts": {
