@@ -2,9 +2,7 @@
     "compilerOptions": {
         "module":"CommonJS",
         "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "moduleResolution": "node",
         "target": "ES6",
         "outDir": "dist",

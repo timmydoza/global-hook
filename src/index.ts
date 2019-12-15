@@ -1,26 +1,26 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Dispatch, SetStateAction } from 'react';
 
 function createUseGlobalState() {
-  let touchedObj: { [namespace: string]: boolean } = {};
-  let stateObj: { [namespace: string]: any } = {};
-  const listeners: { [namespace: string]: ((arg0: any) => void)[] } = {};
+  const listeners: { [namespace: string]: Dispatch<SetStateAction<any>>[] } = {};
 
   return function useGlobalState<T>(initialState: T | (() => T), namespace: string) {
-    if (!touchedObj[namespace]) stateObj[namespace] = initialState;
-    touchedObj[namespace] = true;
-    const [state, setState] = useState<T>(stateObj[namespace]);
+    if (typeof namespace !== 'string' || namespace === '') {
+      throw new Error('A non-empty string must be passed to useGlobalState as the second argument.');
+    }
+
+    const [state, setState] = useState<T>(initialState);
 
     useEffect(() => {
-      listeners[namespace] = listeners[namespace] || [];
-      listeners[namespace].push(setState);
+      const listenerArr = (listeners[namespace] = listeners[namespace] || []);
+      listenerArr.push(setState);
       return () => {
-        listeners[namespace].splice(listeners[namespace].indexOf(setState), 1);
+        listenerArr.splice(listenerArr.indexOf(setState), 1);
       };
     }, [namespace, setState]);
 
     const setGlobalState = useCallback(
       action => {
-        const nextState = (stateObj[namespace] = typeof action === "function" ? action(state) : action);
+        const nextState = typeof action === 'function' ? action(state) : action;
         listeners[namespace].forEach(listener => listener(nextState));
       },
       [state, namespace]
