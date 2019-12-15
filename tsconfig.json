@@ -7,7 +7,7 @@
         "sourceMap": true,
         "moduleResolution": "node",
         "target": "ES6",
-        "outDir": ".",
+        "outDir": "dist",
         "declaration": true
     },
     "include": [

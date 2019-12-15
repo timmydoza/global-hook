@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 function createUseGlobalState() {
-    let touched = {};
+    let touchedObj = {};
     let stateObj = {};
     const listeners = {};
     return function useGlobalState(initialState, namespace) {
-        if (!touched[namespace])
+        if (!touchedObj[namespace])
             stateObj[namespace] = initialState;
-        touched[namespace] = true;
+        touchedObj[namespace] = true;
         const [state, setState] = react_1.useState(stateObj[namespace]);
         react_1.useEffect(() => {
             listeners[namespace] = listeners[namespace] || [];

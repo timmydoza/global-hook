@@ -1,15 +1,15 @@
 {
   "name": "global-hook",
-  "version": "0.0.1",
-  "description": "A global version of the useState React hook.",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "A global version of the useState React hook with a simple API.",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timmydoza/use-global.git"
+    "url": "git+https://github.com/timmydoza/global-hook.git"
   },
   "keywords": [
     "react",
@@ -21,9 +21,9 @@
   "author": "timmydoza <timmydoza@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/timmydoza/use-global/issues"
+    "url": "https://github.com/timmydoza/global-hook/issues"
   },
-  "homepage": "https://github.com/timmydoza/use-global#readme",
+  "homepage": "https://github.com/timmydoza/global-hook#readme",
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
